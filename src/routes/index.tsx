@@ -1,4 +1,20 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
 import {
   Kanban,
   Boxes,
@@ -29,64 +45,108 @@ export const Route = createFileRoute("/")({
   component: AppHub,
 });
 
-const apps = [
+type App = {
+  id: string;
+  name: string;
+  description: string;
+  href: string;
+  icon: typeof Kanban;
+  accentVar: string;
+  size: "featured" | "wide" | "tall" | "default";
+};
+
+const initialApps: App[] = [
   {
+    id: "pm",
     name: "PM",
-    description:
-      "Project Management System — Kelola proyek, tugas, timeline, dan kolaborasi tim dalam satu platform terpusat.",
+    description: "Project Management System — Kelola proyek, tugas, timeline, dan kolaborasi tim dalam satu platform terpusat.",
     href: "http://pm.provaliantgroup.com/",
     icon: Kanban,
     accentVar: "--accent-pm",
-    size: "featured" as const,
+    size: "featured",
   },
   {
+    id: "provex",
     name: "Provex",
     description: "Supply Chain & Procurement — Platform pengelolaan rantai pasok, pengadaan, dan vendor untuk operasional bisnis.",
     href: "https://provex.provaliantgroup.com/",
     icon: Boxes,
     accentVar: "--accent-provex",
+    size: "wide",
   },
   {
+    id: "production",
     name: "Production",
     description: "Manufacturing Execution System — Sistem kontrol produksi, tracking Work In Process (WIP), dan monitoring lantai pabrik secara real-time.",
     href: "https://production.provaliant.cloud/",
     icon: Factory,
     accentVar: "--accent-production",
+    size: "wide",
   },
   {
+    id: "absen",
     name: "Absen",
     description: "Employee Attendance System — Sistem absensi digital dengan fitur clock-in/out, shift management, dan laporan kehadiran karyawan.",
     href: "https://absen.provaliantgroup.com/",
     icon: Fingerprint,
     accentVar: "--accent-absen",
-    size: "wide" as const,
+    size: "tall",
   },
   {
+    id: "ikoot",
     name: "iKoot",
     description: "Internal Communication & Tools — Aplikasi kebutuhan internal tim Provaliant untuk kolaborasi dan produktivitas harian.",
     href: "https://ikoot.provaliantgroup.com/",
     icon: Sparkles,
     accentVar: "--accent-ikoot",
-    size: "wide" as const,
+    size: "default",
   },
   {
+    id: "prompt",
     name: "Prompt",
     description: "AI Prompt Management — Toolkit untuk mengelola, mengorganisir, dan mengoptimalkan prompt AI untuk produktivitas tim.",
     href: "https://prompt.provaliantgroup.com/",
     icon: Terminal,
     accentVar: "--accent-prompt",
+    size: "default",
   },
   {
+    id: "dongeng",
     name: "Dongeng",
     description: "Digital Storytelling Platform — Platform pembuatan dan distribusi konten cerita interaktif untuk edukasi dan entertainment.",
     href: "https://dongeng.provaliant.cloud/",
     icon: BookOpen,
     accentVar: "--accent-dongeng",
-    size: "wide" as const,
+    size: "default",
   },
 ];
 
 function AppHub() {
+  const [apps, setApps] = useState<App[]>(initialApps);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setApps((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
   return (
     <main className="relative min-h-screen px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-6xl">
@@ -108,14 +168,22 @@ function AppHub() {
           </p>
         </header>
 
-        <section
-          aria-label="Daftar aplikasi"
-          className="grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[12rem]"
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
         >
-          {apps.map((app) => (
-            <AppCard key={app.name} {...app} />
-          ))}
-        </section>
+          <SortableContext items={apps.map((a) => a.id)} strategy={rectSortingStrategy}>
+            <section
+              aria-label="Daftar aplikasi"
+              className="grid grid-cols-1 gap-4 md:grid-cols-6"
+            >
+              {apps.map((app) => (
+                <AppCard key={app.id} app={app} />
+              ))}
+            </section>
+          </SortableContext>
+        </DndContext>
 
         <footer className="mt-16 flex flex-col items-center justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Provaliant Group. All rights reserved.</p>

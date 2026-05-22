@@ -1,92 +1,91 @@
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
-type Size = "featured" | "wide" | "tall" | "default";
-
-interface AppCardProps {
+type App = {
+  id: string;
   name: string;
   description: string;
   href: string;
-  icon: LucideIcon;
-  accentVar: string; // e.g. "--accent-pm"
-  size?: Size;
-}
-
-const sizeClasses: Record<Size, string> = {
-  featured: "md:col-span-2 md:row-span-2 min-h-[18rem] md:min-h-[24rem]",
-  wide: "md:col-span-2 min-h-[12rem]",
-  tall: "md:row-span-2 min-h-[18rem]",
-  default: "min-h-[12rem]",
+  icon: typeof ArrowUpRight;
+  accentVar: string;
+  size: "featured" | "wide" | "tall" | "default";
 };
 
-export function AppCard({
-  name,
-  description,
-  href,
-  icon: Icon,
-  accentVar,
-  size = "default",
-}: AppCardProps) {
+interface AppCardProps {
+  app: App;
+}
+
+const sizeClasses = {
+  featured: "md:col-span-6",
+  wide: "md:col-span-3",
+  tall: "md:col-span-2 md:row-span-2",
+  default: "md:col-span-3",
+};
+
+export function AppCard({ app }: AppCardProps) {
+  const { name, description, href, icon: Icon, accentVar, size, id } = app;
   const accent = `var(${accentVar})`;
-  const isFeatured = size === "featured";
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 1000 : "auto",
+  };
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Buka ${name}`}
-      className={`group relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${sizeClasses[size]}`}
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`relative ${sizeClasses[size]} ${isDragging ? "scale-105 shadow-2xl" : ""}`}
     >
-      {/* gradient overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40 transition-opacity duration-500 group-hover:opacity-80"
-        style={{
-          background: `radial-gradient(circle at 0% 0%, color-mix(in oklab, ${accent} 35%, transparent), transparent 60%)`,
-        }}
-      />
-      {/* glow blob bottom right */}
-      <div
-        className="pointer-events-none absolute -bottom-20 -right-20 h-48 w-48 rounded-full opacity-30 blur-3xl transition-all duration-500 group-hover:opacity-60 group-hover:scale-125"
-        style={{ backgroundColor: accent }}
-      />
-
-      <div className="relative flex h-full flex-col justify-between gap-6">
-        <div className="flex items-start justify-between">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Buka ${name}`}
+        className="glass-card flex flex-col p-6 rounded-2xl transition-all duration-300 h-full"
+        {...attributes}
+        {...listeners}
+      >
+        <div className="flex items-start justify-between mb-4">
           <div
-            className="flex h-12 w-12 items-center justify-center rounded-xl border border-border/60 bg-background/40 backdrop-blur-md transition-all duration-300 group-hover:scale-110"
+            className="w-12 h-12 flex items-center justify-center rounded-xl bg-background/30 group-hover:bg-background/50 transition-colors duration-300 cursor-grab"
             style={{
-              boxShadow: `0 0 24px -8px ${accent}`,
+              boxShadow: `0 0 20px -4px ${accent}`,
             }}
           >
             <Icon
-              className="h-6 w-6 transition-transform duration-300"
+              className="h-6 w-6 transition-transform duration-300 group-hover:scale-110"
               style={{ color: accent }}
               strokeWidth={1.75}
             />
           </div>
           <ArrowUpRight
-            className="h-5 w-5 text-muted-foreground transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground"
+            className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
             strokeWidth={1.75}
           />
         </div>
 
-        <div>
-          <h2
-            className={`font-semibold tracking-tight text-foreground ${
-              isFeatured ? "text-4xl md:text-5xl" : "text-2xl"
-            }`}
-          >
+        <div className="flex flex-col gap-1 flex-grow">
+          <h2 className="text-lg font-semibold text-foreground group-hover:text-foreground/80 transition-colors">
             {name}
           </h2>
-          <p
-            className={`mt-2 text-muted-foreground ${
-              isFeatured ? "text-base md:text-lg max-w-md" : "text-sm"
-            }`}
-          >
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {description}
           </p>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   );
 }
