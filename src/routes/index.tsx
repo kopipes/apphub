@@ -55,7 +55,7 @@ const apps: App[] = [
   {
     id: "provex",
     name: "Provex",
-    description: "Supply Chain & Procurement — Platform pengelolaan rantai pasok, pengadaan, dan vendor untuk operasional bisnis.",
+    description: "Reimbursement System — Platform pengelolaan reimbursement, klaim pengeluaran, dan approval untuk kebutuhan finansial karyawan.",
     href: "https://provex.provaliantgroup.com/",
     icon: Boxes,
     accentVar: "--accent-provex",
@@ -83,7 +83,7 @@ const apps: App[] = [
   {
     id: "ikoot",
     name: "iKoot",
-    description: "Internal Communication & Tools — Aplikasi kebutuhan internal tim Provaliant untuk kolaborasi dan produktivitas harian.",
+    description: "Event Membership Management — Platform pengelolaan membership event, pendaftaran, dan informasi acara untuk komunitas Provaliant.",
     href: "https://ikoot.provaliantgroup.com/",
     icon: Sparkles,
     accentVar: "--accent-ikoot",
