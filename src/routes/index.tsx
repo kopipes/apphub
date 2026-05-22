@@ -33,7 +33,7 @@ const apps = [
   {
     name: "PM",
     description:
-      "Project Management — kelola proyek, tugas, dan timeline tim Anda dari satu tempat.",
+      "Project Management System — Kelola proyek, tugas, timeline, dan kolaborasi tim dalam satu platform terpusat.",
     href: "http://pm.provaliantgroup.com/",
     icon: Kanban,
     accentVar: "--accent-pm",
@@ -41,21 +41,21 @@ const apps = [
   },
   {
     name: "Provex",
-    description: "Platform Provex untuk operasional dan eksekusi.",
+    description: "Supply Chain & Procurement — Platform pengelolaan rantai pasok, pengadaan, dan vendor untuk operasional bisnis.",
     href: "https://provex.provaliantgroup.com/",
     icon: Boxes,
     accentVar: "--accent-provex",
   },
   {
     name: "Production",
-    description: "Sistem manajemen produksi & alur kerja pabrik.",
+    description: "Manufacturing Execution System — Sistem kontrol produksi, tracking Work In Process (WIP), dan monitoring lantai pabrik secara real-time.",
     href: "https://production.provaliant.cloud/",
     icon: Factory,
     accentVar: "--accent-production",
   },
   {
     name: "Absen",
-    description: "Absensi karyawan — clock-in, kehadiran, dan laporan.",
+    description: "Employee Attendance System — Sistem absensi digital dengan fitur clock-in/out, shift management, dan laporan kehadiran karyawan.",
     href: "https://absen.provaliantgroup.com/",
     icon: Fingerprint,
     accentVar: "--accent-absen",
@@ -63,7 +63,7 @@ const apps = [
   },
   {
     name: "iKoot",
-    description: "Aplikasi iKoot untuk kebutuhan internal.",
+    description: "Internal Communication & Tools — Aplikasi kebutuhan internal tim Provaliant untuk kolaborasi dan produktivitas harian.",
     href: "https://ikoot.provaliantgroup.com/",
     icon: Sparkles,
     accentVar: "--accent-ikoot",
@@ -71,14 +71,14 @@ const apps = [
   },
   {
     name: "Prompt",
-    description: "Toolkit prompt & AI untuk produktivitas tim.",
+    description: "AI Prompt Management — Toolkit untuk mengelola, mengorganisir, dan mengoptimalkan prompt AI untuk produktivitas tim.",
     href: "https://prompt.provaliantgroup.com/",
     icon: Terminal,
     accentVar: "--accent-prompt",
   },
   {
     name: "Dongeng",
-    description: "Platform Dongeng — cerita & konten interaktif.",
+    description: "Digital Storytelling Platform — Platform pembuatan dan distribusi konten cerita interaktif untuk edukasi dan entertainment.",
     href: "https://dongeng.provaliant.cloud/",
     icon: BookOpen,
     accentVar: "--accent-dongeng",
