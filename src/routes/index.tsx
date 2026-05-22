@@ -8,142 +8,55 @@ import {
   Terminal,
   BookOpen,
 } from "lucide-react";
-import { AppCard } from "@/components/app-card";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Provaliant App Hub — Akses Semua Aplikasi" },
-      {
-        name: "description",
-        content:
-          "Pusat akses ke seluruh aplikasi Provaliant: PM, Provex, Production, Absen, iKoot, Prompt, dan Dongeng.",
-      },
-      { property: "og:title", content: "Provaliant App Hub" },
-      {
-        property: "og:description",
-        content: "Akses cepat ke seluruh aplikasi Provaliant dalam satu tempat.",
-      },
+      { title: "App Hub — Provaliant" },
+      { name: "description", content: "Access all Provaliant apps in one place." },
     ],
   }),
   component: AppHub,
 });
 
-type App = {
-  id: string;
-  name: string;
-  description: string;
-  href: string;
-  icon: typeof Kanban;
-  accentVar: string;
-  size: "featured" | "wide" | "tall" | "default";
-  layout?: "vertical" | "horizontal";
-  centered?: boolean;
-  isFeatured?: boolean;
-};
-
-const apps: App[] = [
-  {
-    id: "pm",
-    name: "PM",
-    description: "Project Management System — Kelola proyek, tugas, timeline, dan kolaborasi tim dalam satu platform terpusat.",
-    href: "http://pm.provaliantgroup.com/",
-    icon: Kanban,
-    accentVar: "--accent-pm",
-    size: "featured",
-  },
-  {
-    id: "provex",
-    name: "Provex",
-    description: "Reimbursement System — Platform pengelolaan reimbursement, klaim pengeluaran, dan approval untuk kebutuhan finansial karyawan.",
-    href: "https://provex.provaliantgroup.com/",
-    icon: Boxes,
-    accentVar: "--accent-provex",
-    size: "default",
-  },
-  {
-    id: "production",
-    name: "Production",
-    description: "Manufacturing Execution System — Sistem kontrol produksi, tracking Work In Process (WIP), dan monitoring lantai pabrik secara real-time.",
-    href: "https://production.provaliant.cloud/",
-    icon: Factory,
-    accentVar: "--accent-production",
-    size: "default",
-  },
-  {
-    id: "absen",
-    name: "Absen",
-    description: "Employee Attendance System — Sistem absensi digital dengan fitur clock-in/out, shift management, dan laporan kehadiran karyawan.",
-    href: "https://absen.provaliantgroup.com/",
-    icon: Fingerprint,
-    accentVar: "--accent-absen",
-    size: "tall",
-    centered: true,
-  },
-  {
-    id: "ikoot",
-    name: "iKoot",
-    description: "Event Membership Management — Platform pengelolaan membership event, pendaftaran, dan informasi acara untuk komunitas Provaliant.",
-    href: "https://ikoot.provaliantgroup.com/",
-    icon: Sparkles,
-    accentVar: "--accent-ikoot",
-    size: "wide",
-    layout: "horizontal",
-  },
-  {
-    id: "prompt",
-    name: "Prompt",
-    description: "AI Prompt Management — Toolkit untuk mengelola, mengorganisir, dan mengoptimalkan prompt AI untuk produktivitas tim.",
-    href: "https://prompt.provaliantgroup.com/",
-    icon: Terminal,
-    accentVar: "--accent-prompt",
-    size: "default",
-  },
-  {
-    id: "dongeng",
-    name: "Dongeng",
-    description: "Digital Storytelling Platform — Platform pembuatan dan distribusi konten cerita interaktif untuk edukasi dan entertainment.",
-    href: "https://dongeng.provaliant.cloud/",
-    icon: BookOpen,
-    accentVar: "--accent-dongeng",
-    size: "default",
-  },
+const apps = [
+  { id: "pm", name: "PM", description: "Project Management System", href: "http://pm.provaliantgroup.com/", icon: Kanban },
+  { id: "provex", name: "Provex", description: "Reimbursement System", href: "https://provex.provaliantgroup.com/", icon: Boxes },
+  { id: "production", name: "Production", description: "Manufacturing Execution System", href: "https://production.provaliant.cloud/", icon: Factory },
+  { id: "absen", name: "Absen", description: "Employee Attendance System", href: "https://absen.provaliantgroup.com/", icon: Fingerprint },
+  { id: "ikoot", name: "iKoot", description: "Event Membership Management", href: "https://ikoot.provaliantgroup.com/", icon: Sparkles },
+  { id: "prompt", name: "Prompt", description: "AI Prompt Management", href: "https://prompt.provaliantgroup.com/", icon: Terminal },
+  { id: "dongeng", name: "Dongeng", description: "Digital Storytelling Platform", href: "https://dongeng.provaliant.cloud/", icon: BookOpen },
 ];
 
 function AppHub() {
   return (
-    <main className="relative min-h-screen px-6 py-16 md:px-12 md:py-24">
-      <div className="mx-auto max-w-6xl">
-        <header className="mb-12 animate-fade-in md:mb-16">
-          <img
-            src="/img/logo_pv.png"
-            alt="Provaliant Logo"
-            className="h-12 md:h-16 w-auto"
-          />
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            App Hub.
-            <span className="block text-muted-foreground">
-              Semua aplikasi, satu pintu.
-            </span>
-          </h1>
-          <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-            Pilih aplikasi yang ingin Anda buka. Akses cepat, aman, dan selalu
-            tersedia.
-          </p>
-        </header>
+    <main className="min-h-screen px-6 py-12">
+      <div className="max-w-4xl mx-auto">
+        <img src="/img/logo_pv.png" alt="Provaliant Logo" className="h-12 w-auto" />
+        <h1 className="mt-6 text-3xl font-bold text-gray-900">App Hub</h1>
+        <p className="mt-2 text-gray-500">All apps, one place.</p>
 
-        <section
-          aria-label="Daftar aplikasi"
-          className="grid grid-cols-1 md:grid-cols-6 gap-4 w-full"
-        >
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {apps.map((app) => (
-            <AppCard key={app.id} app={app} />
+            <a
+              key={app.id}
+              href={app.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <app.icon className="h-5 w-5 text-gray-600" />
+                <h2 className="font-semibold text-gray-900">{app.name}</h2>
+              </div>
+              <p className="text-sm text-gray-500">{app.description}</p>
+            </a>
           ))}
-        </section>
+        </div>
 
-        <footer className="mt-16 flex flex-col items-center justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} Provaliant Group. All rights reserved.</p>
-          <p>Butuh akses baru? Hubungi admin IT Anda.</p>
+        <footer className="mt-12 pt-6 border-t border-gray-200 text-sm text-gray-400">
+          © {new Date().getFullYear()} Provaliant Group
         </footer>
       </div>
     </main>
