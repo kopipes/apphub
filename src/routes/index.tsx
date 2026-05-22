@@ -51,7 +51,6 @@ const apps: App[] = [
     icon: Kanban,
     accentVar: "--accent-pm",
     size: "featured",
-    isFeatured: true,
   },
   {
     id: "provex",
