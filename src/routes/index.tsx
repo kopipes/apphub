@@ -1,20 +1,4 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  rectSortingStrategy,
-} from "@dnd-kit/sortable";
 import {
   Kanban,
   Boxes,
@@ -53,9 +37,12 @@ type App = {
   icon: typeof Kanban;
   accentVar: string;
   size: "featured" | "wide" | "tall" | "default";
+  layout?: "vertical" | "horizontal";
+  centered?: boolean;
+  isFeatured?: boolean;
 };
 
-const initialApps: App[] = [
+const apps: App[] = [
   {
     id: "pm",
     name: "PM",
@@ -64,6 +51,7 @@ const initialApps: App[] = [
     icon: Kanban,
     accentVar: "--accent-pm",
     size: "featured",
+    isFeatured: true,
   },
   {
     id: "provex",
@@ -72,7 +60,7 @@ const initialApps: App[] = [
     href: "https://provex.provaliantgroup.com/",
     icon: Boxes,
     accentVar: "--accent-provex",
-    size: "wide",
+    size: "default",
   },
   {
     id: "production",
@@ -81,7 +69,7 @@ const initialApps: App[] = [
     href: "https://production.provaliant.cloud/",
     icon: Factory,
     accentVar: "--accent-production",
-    size: "wide",
+    size: "default",
   },
   {
     id: "absen",
@@ -91,6 +79,7 @@ const initialApps: App[] = [
     icon: Fingerprint,
     accentVar: "--accent-absen",
     size: "tall",
+    centered: true,
   },
   {
     id: "ikoot",
@@ -99,7 +88,8 @@ const initialApps: App[] = [
     href: "https://ikoot.provaliantgroup.com/",
     icon: Sparkles,
     accentVar: "--accent-ikoot",
-    size: "default",
+    size: "wide",
+    layout: "horizontal",
   },
   {
     id: "prompt",
@@ -122,31 +112,6 @@ const initialApps: App[] = [
 ];
 
 function AppHub() {
-  const [apps, setApps] = useState<App[]>(initialApps);
-
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      setApps((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
-
   return (
     <main className="relative min-h-screen px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-6xl">
@@ -168,22 +133,14 @@ function AppHub() {
           </p>
         </header>
 
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
+        <section
+          aria-label="Daftar aplikasi"
+          className="grid grid-cols-1 md:grid-cols-6 gap-4 w-full"
         >
-          <SortableContext items={apps.map((a) => a.id)} strategy={rectSortingStrategy}>
-            <section
-              aria-label="Daftar aplikasi"
-              className="grid grid-cols-1 gap-4 md:grid-cols-6"
-            >
-              {apps.map((app) => (
-                <AppCard key={app.id} app={app} />
-              ))}
-            </section>
-          </SortableContext>
-        </DndContext>
+          {apps.map((app) => (
+            <AppCard key={app.id} app={app} />
+          ))}
+        </section>
 
         <footer className="mt-16 flex flex-col items-center justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Provaliant Group. All rights reserved.</p>

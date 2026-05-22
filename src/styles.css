@@ -182,3 +182,7 @@
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(208, 188, 255, 0.15);
 }
+
+.accent-gradient {
+  background: linear-gradient(135deg, #d0bcff 0%, #2fd9f4 100%);
+}
