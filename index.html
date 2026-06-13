@@ -162,9 +162,9 @@
     </section>
 
     <!-- Dynamic Grid Layout -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-md w-full">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-md w-full">
       <!-- PM - Featured (VIP style) -->
-      <a class="col-span-2 md:col-span-4 accent-gradient p-[2px] rounded-2xl block group shadow-2xl hover:shadow-primary/30 transition-all duration-500 relative overflow-hidden" href="http://pm.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+      <a class="md:col-span-6 accent-gradient p-[2px] rounded-2xl block group shadow-2xl hover:shadow-primary/30 transition-all duration-500 relative overflow-hidden" href="http://pm.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
         <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-20 transition-opacity"></div>
         <div class="bg-background/60 backdrop-blur-3xl flex items-center p-lg rounded-[14px] w-full h-full border border-white/20">
           <div class="w-16 h-16 flex items-center justify-center rounded-full bg-white/20 mr-md group-hover:scale-110 transition-transform">
@@ -179,7 +179,7 @@
       </a>
 
       <!-- Provex -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://provex.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+      <a class="md:col-span-3 glass-card flex flex-col p-md rounded-2xl group" href="https://provex.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
         <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary transition-colors duration-300 mb-md">
           <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">paid</span>
         </div>
@@ -188,7 +188,7 @@
       </a>
 
       <!-- Production -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://production.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
+      <a class="md:col-span-3 glass-card flex flex-col p-md rounded-2xl group" href="https://production.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
         <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary transition-colors duration-300 mb-md">
           <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary transition-colors">precision_manufacturing</span>
         </div>
@@ -197,57 +197,68 @@
       </a>
 
       <!-- PVBudget -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://budget.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mb-md">
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://budget.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mr-md">
           <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">account_balance_wallet</span>
         </div>
-        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors mb-xs">PVBudget</h3>
-        <p class="font-label-sm text-on-surface-variant">Budget Management — Platform pengelolaan anggaran dan perencanaan keuangan perusahaan.</p>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors">PVBudget</h3>
+          <p class="font-label-sm text-on-surface-variant">Budget Management — Platform pengelolaan anggaran dan perencanaan keuangan perusahaan.</p>
+        </div>
       </a>
 
       <!-- Finelle -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://finelle.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary transition-colors duration-300 mb-md">
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://finelle.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary transition-colors duration-300 mr-md">
           <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">payments</span>
         </div>
-        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors mb-xs">Finelle</h3>
-        <p class="font-label-sm text-on-surface-variant">Payroll Management — Pengelolaan gaji karyawan, input salary bulanan, dan laporan per divisi.</p>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">Finelle</h3>
+          <p class="font-label-sm text-on-surface-variant">Payroll Management — Pengelolaan gaji karyawan, input salary bulanan, dan laporan per divisi.</p>
+        </div>
       </a>
 
-      <!-- Absen -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://absen.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/20 group-hover:bg-secondary transition-colors duration-300 mb-md">
-          <span class="material-symbols-outlined text-secondary group-hover:text-on-secondary transition-colors">fingerprint</span>
+      <!-- Absen (Tall, Centered) -->
+      <a class="md:col-span-2 glass-card flex flex-col items-center text-center p-md rounded-2xl group" href="https://absen.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-16 h-16 flex items-center justify-center rounded-full bg-secondary/20 group-hover:bg-secondary transition-colors duration-300 mb-md">
+          <span class="material-symbols-outlined text-secondary group-hover:text-on-secondary transition-colors text-3xl">fingerprint</span>
         </div>
         <h3 class="font-headline-md text-body-lg font-bold group-hover:text-secondary transition-colors mb-xs">Absen</h3>
-        <p class="font-label-sm text-on-surface-variant">Employee Attendance System — Absensi digital dengan clock-in/out dan shift management.</p>
+        <p class="font-label-sm text-on-surface-variant px-2">Employee Attendance System — Absensi digital dengan clock-in/out dan shift management.</p>
       </a>
 
-      <!-- iKoot -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary-container transition-colors duration-300 mb-md">
+      <!-- iKoot (Wide, Horizontal) -->
+      <a class="md:col-span-4 glass-card flex items-center p-md rounded-2xl group" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary-container transition-colors duration-300 mr-md">
           <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container transition-colors">celebration</span>
         </div>
-        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors mb-xs">iKoot</h3>
-        <p class="font-label-sm text-on-surface-variant">Event Membership Management — Platform pengelolaan membership event dan informasi acara.</p>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">iKoot</h3>
+          <p class="font-label-sm text-on-surface-variant">Event Membership Management — Platform pengelolaan membership event dan informasi acara.</p>
+        </div>
+        <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
       </a>
 
       <!-- Prompt -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mb-md">
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mr-md">
           <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">terminal</span>
         </div>
-        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors mb-xs">Prompt</h3>
-        <p class="font-label-sm text-on-surface-variant">AI Prompt Management — Toolkit untuk mengelola dan mengoptimalkan prompt AI.</p>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors">Prompt</h3>
+          <p class="font-label-sm text-on-surface-variant">AI Prompt Management — Toolkit untuk mengelola dan mengoptimalkan prompt AI.</p>
+        </div>
       </a>
 
       <!-- Dongeng -->
-      <a class="glass-card flex flex-col p-md rounded-2xl group" href="https://dongeng.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
-        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/20 group-hover:bg-secondary-container transition-colors duration-300 mb-md">
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://dongeng.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-secondary/20 group-hover:bg-secondary-container transition-colors duration-300 mr-md">
           <span class="material-symbols-outlined text-secondary group-hover:text-on-secondary-container transition-colors">auto_stories</span>
         </div>
-        <h3 class="font-headline-md text-body-lg font-bold group-hover:text-secondary transition-colors mb-xs">Dongeng</h3>
-        <p class="font-label-sm text-on-surface-variant">Digital Storytelling Platform — Platform pembuatan konten cerita interaktif.</p>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-secondary transition-colors">Dongeng</h3>
+          <p class="font-label-sm text-on-surface-variant">Digital Storytelling Platform — Platform pembuatan konten cerita interaktif.</p>
+        </div>
       </a>
     </div>
   </main>
