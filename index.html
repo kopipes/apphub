@@ -206,6 +206,16 @@
       font-size: 24px !important;
     }
 
+    /* drag and drop */
+    .app-icon.dragging {
+      opacity: 0.3;
+    }
+    .app-icon.drag-over {
+      outline: 2px dashed #000080;
+      outline-offset: -2px;
+      background: #e0e0ff;
+    }
+
     /* divider */
     .grid-divider {
       width: 100%;
@@ -344,5 +354,87 @@
 
   </div>
 
+  <script>
+    const STORAGE_KEY = 'apphub-icon-order';
+    const grid = document.querySelector('.icon-grid');
+
+    // Save order by href
+    function saveOrder() {
+      const order = [...grid.querySelectorAll('.app-icon')].map(el => el.getAttribute('href'));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    }
+
+    // Restore saved order
+    function restoreOrder() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      try {
+        const order = JSON.parse(saved);
+        const icons = [...grid.querySelectorAll('.app-icon')];
+        order.forEach(href => {
+          const el = icons.find(i => i.getAttribute('href') === href);
+          if (el) grid.appendChild(el);
+        });
+      } catch (e) {}
+    }
+
+    restoreOrder();
+
+    // Drag state
+    let dragged = null;
+
+    grid.addEventListener('dragstart', e => {
+      dragged = e.target.closest('.app-icon');
+      if (!dragged) return;
+      dragged.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    grid.addEventListener('dragend', e => {
+      if (dragged) dragged.classList.remove('dragging');
+      grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
+      dragged = null;
+      saveOrder();
+    });
+
+    grid.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const target = e.target.closest('.app-icon');
+      if (!target || target === dragged) return;
+      grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
+      target.classList.add('drag-over');
+    });
+
+    grid.addEventListener('dragleave', e => {
+      const target = e.target.closest('.app-icon');
+      if (target) target.classList.remove('drag-over');
+    });
+
+    grid.addEventListener('drop', e => {
+      e.preventDefault();
+      const target = e.target.closest('.app-icon');
+      if (!target || target === dragged || !dragged) return;
+      target.classList.remove('drag-over');
+
+      // Insert before or after based on mouse position
+      const rect = target.getBoundingClientRect();
+      const midX = rect.left + rect.width / 2;
+      if (e.clientX < midX) {
+        grid.insertBefore(dragged, target);
+      } else {
+        grid.insertBefore(dragged, target.nextSibling);
+      }
+    });
+
+    // Make all grid icons draggable
+    grid.querySelectorAll('.app-icon').forEach(el => {
+      el.setAttribute('draggable', 'true');
+      // Prevent link navigation during drag
+      el.addEventListener('click', e => {
+        if (el.classList.contains('dragging')) e.preventDefault();
+      });
+    });
+  </script>
 </body>
 </html>
