@@ -146,8 +146,209 @@
       animation: float 6s ease-in-out infinite;
     }
   </style>
+  <style>
+    :root {
+      --mac-black: #111;
+      --mac-gray: #bdbdbd;
+      --mac-light: #fff;
+      --mac-mid: #777;
+      --mac-dark: #444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      color: var(--mac-black) !important;
+      background-color: #a9a9a9 !important;
+      background-image: repeating-linear-gradient(135deg, rgba(255,255,255,.18) 0 1px, transparent 1px 3px) !important;
+      font-family: "Geneva", "MS Sans Serif", Arial, sans-serif !important;
+      font-size: 13px !important;
+      image-rendering: pixelated;
+      padding-top: 28px;
+    }
+
+    .classic-menu {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 12px;
+      color: #000;
+      background: #eee;
+      border-bottom: 2px solid #000;
+      box-shadow: inset 0 -1px #fff;
+      font: 12px/1 "Geneva", Arial, sans-serif;
+      white-space: nowrap;
+    }
+
+    .classic-menu strong { font-size: 15px; }
+
+    main {
+      position: relative;
+      max-width: 900px !important;
+      margin: 30px auto 24px !important;
+      padding: 0 14px 18px !important;
+      display: block !important;
+      background: #ddd;
+      border: 2px solid #000;
+      box-shadow: inset 1px 1px #fff, inset -1px -1px #555, 6px 6px rgba(0,0,0,.28);
+    }
+
+    main::before {
+      content: "App Hub";
+      display: block;
+      height: 21px;
+      margin: 0 -14px 14px;
+      padding: 3px 8px;
+      color: #000;
+      background: repeating-linear-gradient(0deg, #111 0 1px, #eee 1px 3px, #111 3px 4px, #eee 4px 6px);
+      border-bottom: 1px solid #000;
+      font: bold 12px/15px "Geneva", Arial, sans-serif;
+      text-align: center;
+    }
+
+    main::after {
+      content: "✦";
+      position: fixed;
+      right: 28px;
+      bottom: 30px;
+      color: #222;
+      font-size: 38px;
+      text-shadow: 2px 2px #eee;
+      pointer-events: none;
+    }
+
+    section {
+      display: grid !important;
+      grid-template-columns: 76px 1fr !important;
+      align-items: center;
+      gap: 10px 14px;
+      margin: 0 0 14px !important;
+      padding: 8px 10px;
+      text-align: left !important;
+      background: #eee;
+      border: 2px solid #000;
+      box-shadow: inset 1px 1px #fff, inset -1px -1px #777;
+    }
+
+    section img {
+      width: 64px !important;
+      max-height: 64px;
+      object-fit: contain;
+      margin: 0 !important;
+      filter: grayscale(1) contrast(1.4);
+    }
+
+    section h2 {
+      margin: 0 !important;
+      color: #000 !important;
+      background: none !important;
+      font: bold 22px/1.15 "Geneva", Arial, sans-serif !important;
+      letter-spacing: 0 !important;
+    }
+
+    section p {
+      margin: 4px 0 0;
+      color: #222 !important;
+      font: 12px/1.35 "Geneva", Arial, sans-serif !important;
+    }
+
+    main > div.grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px !important;
+      width: 100% !important;
+    }
+
+    .glass-card,
+    .accent-gradient {
+      min-height: 108px;
+      grid-column: span 1 !important;
+      display: flex !important;
+      align-items: center;
+      gap: 12px;
+      padding: 12px !important;
+      color: #000 !important;
+      background: #eee !important;
+      border: 2px solid #000 !important;
+      border-radius: 0 !important;
+      box-shadow: inset 2px 2px #fff, inset -2px -2px #666, 2px 2px #222;
+      backdrop-filter: none !important;
+      transition: none !important;
+    }
+
+    .glass-card:hover,
+    .accent-gradient:hover {
+      transform: none !important;
+      background: #fff !important;
+      border-color: #000 !important;
+      box-shadow: inset 2px 2px #fff, inset -2px -2px #666, 2px 2px #222 !important;
+    }
+
+    .accent-gradient { grid-column: span 2 !important; min-height: 86px; }
+    .accent-gradient > div { background: transparent !important; border: 0 !important; padding: 0 !important; backdrop-filter: none !important; }
+    .accent-gradient > div:first-child { display: none; }
+    .accent-gradient > div:not(:first-child) { gap: 16px; }
+
+    .glass-card > div:first-child,
+    .accent-gradient .w-16,
+    .accent-gradient .w-14 {
+      flex: 0 0 42px;
+      width: 42px !important;
+      height: 42px !important;
+      margin: 0 !important;
+      border: 2px solid #000;
+      border-radius: 0 !important;
+      background: #ddd !important;
+      box-shadow: inset 1px 1px #fff, inset -1px -1px #666;
+    }
+
+    .material-symbols-outlined {
+      color: #000 !important;
+      font-size: 25px !important;
+      transition: none !important;
+    }
+
+    .glass-card h3,
+    .accent-gradient h3 {
+      margin: 0 0 4px !important;
+      color: #000 !important;
+      font: bold 15px/1.15 "Geneva", Arial, sans-serif !important;
+    }
+
+    .glass-card p,
+    .accent-gradient p {
+      color: #222 !important;
+      font: 11px/1.3 "Geneva", Arial, sans-serif !important;
+    }
+
+    footer {
+      max-width: 900px !important;
+      margin: 0 auto !important;
+      padding: 10px !important;
+      color: #000 !important;
+      border: 0 !important;
+      font: 11px/1.3 "Geneva", Arial, sans-serif !important;
+    }
+
+    footer p { color: #000 !important; }
+
+    @media (max-width: 620px) {
+      .classic-menu { gap: 10px; overflow: hidden; }
+      main { margin: 18px 8px 18px !important; }
+      main > div.grid { grid-template-columns: 1fr; }
+      .accent-gradient { grid-column: span 1 !important; }
+    }
+  </style>
 </head>
 <body class="font-body-md text-on-surface antialiased overflow-x-hidden">
+  <nav class="classic-menu" aria-label="Classic Mac menu">
+    <strong></strong><span>File</span><span>Edit</span><span>View</span><span>Special</span>
+  </nav>
   <!-- Decorative Elements -->
   <div class="orb w-[300px] h-[300px] bg-primary-container top-[-100px] left-[-100px] floating"></div>
   <div class="orb w-[400px] h-[400px] bg-tertiary-container bottom-[-150px] right-[-150px] floating" style="animation-delay: -2s;"></div>
@@ -155,12 +356,6 @@
 
   <main class="pt-16 pb-xl px-gutter max-w-[800px] mx-auto flex flex-col items-center">
     <!-- Logo Header -->
-    <section class="flex flex-col items-center text-center mb-xl w-full">
-      <img alt="Provaliant App Hub" class="w-48 h-auto mb-6" src="img/logo_pv.png"/>
-      <h2 class="font-headline-xl text-headline-xl mb-xs bg-clip-text text-transparent bg-gradient-to-r from-primary via-tertiary to-secondary">App Hub.</h2>
-      <p class="font-body-md text-on-surface-variant max-w-[500px]">Semua aplikasi, satu pintu. Pilih aplikasi yang ingin Anda buka. Akses cepat, aman, dan selalu tersedia.</p>
-    </section>
-
     <!-- Dynamic Grid Layout -->
     <div class="grid grid-cols-1 md:grid-cols-6 gap-md w-full">
       <!-- PM - Featured (VIP style) -->
@@ -227,26 +422,47 @@
         <p class="font-label-sm text-on-surface-variant px-2">Employee Attendance System — Absensi digital dengan clock-in/out dan shift management.</p>
       </a>
 
-      <!-- iKoot (Wide, Horizontal) -->
-      <a class="md:col-span-4 glass-card flex items-center p-md rounded-2xl group" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary-container transition-colors duration-300 mr-md">
-          <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container transition-colors">celebration</span>
-        </div>
-        <div class="flex-grow">
-          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">iKoot</h3>
-          <p class="font-label-sm text-on-surface-variant">Event Membership Management — Platform pengelolaan membership event dan informasi acara.</p>
-        </div>
-        <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
-      </a>
-
       <!-- Prompt -->
-      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+      <a class="md:col-span-4 glass-card flex items-center p-md rounded-2xl group" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
         <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mr-md">
-          <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">terminal</span>
+          <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">collections</span>
         </div>
         <div class="flex-grow">
           <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors">Prompt</h3>
-          <p class="font-label-sm text-on-surface-variant">AI Prompt Management — Toolkit untuk mengelola dan mengoptimalkan prompt AI.</p>
+          <p class="font-label-sm text-on-surface-variant">Prompt & Image Library — Kumpulkan dan bagikan prompt serta gambar untuk referensi dan inspirasi bersama.</p>
+        </div>
+      </a>
+
+      <!-- Book -->
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://book.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mr-md">
+          <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">directions_car</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors">Book</h3>
+          <p class="font-label-sm text-on-surface-variant">Booking App — Pemesanan kendaraan dan ruang meeting perusahaan secara digital.</p>
+        </div>
+      </a>
+
+      <!-- Inventory -->
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://pventory.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-tertiary/20 group-hover:bg-tertiary-container transition-colors duration-300 mr-md">
+          <span class="material-symbols-outlined text-tertiary group-hover:text-on-tertiary-container transition-colors">inventory_2</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-tertiary transition-colors">Inventory</h3>
+          <p class="font-label-sm text-on-surface-variant">Inventory Management App — Pengelolaan dan pemantauan inventori perusahaan secara real-time.</p>
+        </div>
+      </a>
+
+      <!-- RunDB -->
+      <a class="md:col-span-3 glass-card flex items-center p-md rounded-2xl group" href="https://rundb.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary transition-colors duration-300 mr-md">
+          <span class="material-symbols-outlined text-primary group-hover:text-on-primary transition-colors">query_stats</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">RunDB</h3>
+          <p class="font-label-sm text-on-surface-variant">Run Database Analyzer — Analisis dan monitoring performa database secara real-time.</p>
         </div>
       </a>
 
@@ -259,6 +475,18 @@
           <h3 class="font-headline-md text-body-lg font-bold group-hover:text-secondary transition-colors">Dongeng</h3>
           <p class="font-label-sm text-on-surface-variant">Digital Storytelling Platform — Platform pembuatan konten cerita interaktif.</p>
         </div>
+      </a>
+
+      <!-- iKoot (Wide, Horizontal) -->
+      <a class="md:col-span-4 glass-card flex items-center p-md rounded-2xl group" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <div class="w-14 h-14 flex items-center justify-center rounded-xl bg-primary/20 group-hover:bg-primary-container transition-colors duration-300 mr-md">
+          <span class="material-symbols-outlined text-primary group-hover:text-on-primary-container transition-colors">celebration</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="font-headline-md text-body-lg font-bold group-hover:text-primary transition-colors">iKoot</h3>
+          <p class="font-label-sm text-on-surface-variant">Event Membership Management — Platform pengelolaan membership event dan informasi acara.</p>
+        </div>
+        <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
       </a>
     </div>
   </main>
