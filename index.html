@@ -124,6 +124,17 @@
       padding: 4px;
     }
 
+    .section-title {
+      margin: 2px 4px 4px;
+      padding: 2px 8px;
+      background: #ccc;
+      border: 1px solid #888;
+      box-shadow: inset 1px 1px #fff, inset -1px -1px #666;
+      font: bold 11px/14px "Geneva", Arial, sans-serif;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
     .app-icon {
       display: flex;
       flex-direction: column;
@@ -134,6 +145,7 @@
       color: #000;
       border: 1px solid transparent;
       cursor: pointer;
+      position: relative;
       -webkit-user-select: none;
       user-select: none;
     }
@@ -210,6 +222,29 @@
     .app-icon.dragging {
       opacity: 0.3;
     }
+
+    /* hover tooltip */
+    .app-icon::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      width: 168px;
+      padding: 4px 6px;
+      background: #ffffe1;
+      border: 1px solid #000;
+      box-shadow: 2px 2px rgba(0,0,0,.35);
+      color: #000;
+      font: 10px/1.35 "Geneva", Arial, sans-serif;
+      text-align: left;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .app-icon[data-tip]:hover::after {
+      display: block;
+    }
     .app-icon.drag-over {
       outline: 2px dashed #000080;
       outline-offset: -2px;
@@ -272,92 +307,93 @@
       <div class="toolbar-btn">&#9664;</div>
       <div class="toolbar-btn">&#9654;</div>
       <div class="toolbar-sep"></div>
-      <span>15 items</span>
+      <span>14 items</span>
     </div>
 
     <div class="window-content">
 
-      <!-- PM featured row -->
-      <a class="app-icon featured" href="http://pm.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-        <div class="icon-box">
-          <span class="material-symbols-outlined">dashboard</span>
-        </div>
-        <span class="icon-label">PM — Project Management System</span>
-      </a>
+      <div class="section-title">Core App</div>
 
-      <div class="grid-divider"></div>
+      <!-- Icon grid: Core App -->
+      <div class="icon-grid" data-section="core">
 
-      <!-- Icon grid -->
-      <div class="icon-grid">
-
-        <a class="app-icon" href="https://provex.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">paid</span></div>
-          <span class="icon-label">Provex</span>
+        <a class="app-icon" href="https://flow.provaliantgroup.com/" data-tip="Flow — Alur kerja & approval proses bisnis" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">account_tree</span></div>
+          <span class="icon-label">Flow</span>
         </a>
 
-        <a class="app-icon" href="https://production.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">precision_manufacturing</span></div>
-          <span class="icon-label">Production</span>
-        </a>
-
-        <a class="app-icon" href="https://budget.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://budget.provaliantgroup.com/" data-tip="PVBudget — Anggaran & realisasi biaya proyek" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">account_balance_wallet</span></div>
           <span class="icon-label">PVBudget</span>
         </a>
 
-        <a class="app-icon" href="https://absen.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">fingerprint</span></div>
-          <span class="icon-label">Absen</span>
-        </a>
-
-        <a class="app-icon" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">collections</span></div>
-          <span class="icon-label">Prompt</span>
-        </a>
-
-        <a class="app-icon" href="https://book.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://book.provaliantgroup.com/" data-tip="Book — Pemesanan kendaraan & perjalanan dinas" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">directions_car</span></div>
           <span class="icon-label">Book</span>
         </a>
 
-        <a class="app-icon" href="https://pventory.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://pventory.provaliantgroup.com/" data-tip="Inventory — Stok, barang masuk/keluar & gudang" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">inventory_2</span></div>
           <span class="icon-label">Inventory</span>
         </a>
 
-        <a class="app-icon" href="https://rundb.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">query_stats</span></div>
-          <span class="icon-label">RunDB</span>
+        <a class="app-icon" href="https://production.provaliant.cloud/" data-tip="Production — Monitoring produksi & work order manufaktur" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">precision_manufacturing</span></div>
+          <span class="icon-label">Production</span>
         </a>
 
-        <a class="app-icon" href="https://dongeng.provaliant.cloud/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">auto_stories</span></div>
-          <span class="icon-label">Dongeng</span>
+        <a class="app-icon" href="https://provex.provaliantgroup.com/" data-tip="Provex — Pengeluaran, petty cash & reimburse" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">paid</span></div>
+          <span class="icon-label">Provex</span>
         </a>
 
-        <a class="app-icon" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">celebration</span></div>
-          <span class="icon-label">iKoot</span>
-        </a>
-
-        <a class="app-icon" href="https://pcx.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://pcx.provaliantgroup.com/" data-tip="PCX — Survei kepuasan pelanggan" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">sentiment_satisfied</span></div>
           <span class="icon-label">PCX</span>
         </a>
 
-        <a class="app-icon" href="https://links.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+      </div>
+
+      <div class="grid-divider"></div>
+
+      <div class="section-title">Supporting App</div>
+
+      <!-- Icon grid: Supporting App -->
+      <div class="icon-grid" data-section="supporting">
+
+        <a class="app-icon" href="https://links.provaliantgroup.com/" data-tip="Links — Kumpulan tautan & akses cepat internal" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">link</span></div>
           <span class="icon-label">Links</span>
         </a>
 
-        <a class="app-icon" href="https://pvmailer.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://pvmailer.provaliantgroup.com/" data-tip="PVMailer — Kirim email campaign massal & tracking" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">mark_email_read</span></div>
           <span class="icon-label">PVMailer</span>
         </a>
 
-        <a class="app-icon" href="https://flow.provaliantgroup.com/" target="_blank" rel="noopener noreferrer">
-          <div class="icon-box"><span class="material-symbols-outlined">account_tree</span></div>
-          <span class="icon-label">Flow</span>
+        <a class="app-icon" href="https://absen.provaliantgroup.com/" data-tip="Absen — Presensi kehadiran karyawan" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">fingerprint</span></div>
+          <span class="icon-label">Absen</span>
+        </a>
+
+        <a class="app-icon" href="https://prompt.provaliantgroup.com/" data-tip="Prompt — Koleksi prompt AI tim" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">collections</span></div>
+          <span class="icon-label">Prompt</span>
+        </a>
+
+        <a class="app-icon" href="https://rundb.provaliantgroup.com/" data-tip="RunDB — Query & laporan database" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">query_stats</span></div>
+          <span class="icon-label">RunDB</span>
+        </a>
+
+        <a class="app-icon" href="https://dongeng.provaliant.cloud/" data-tip="Dongeng — Bacaan cerita & konten kreatif" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">auto_stories</span></div>
+          <span class="icon-label">Dongeng</span>
+        </a>
+
+        <a class="app-icon" href="https://ikoot.provaliantgroup.com/" data-tip="iKoot — Kuis & event interaktif karyawan" target="_blank" rel="noopener noreferrer">
+          <div class="icon-box"><span class="material-symbols-outlined">celebration</span></div>
+          <span class="icon-label">iKoot</span>
         </a>
 
       </div>
@@ -371,17 +407,21 @@
 
   <script>
     const STORAGE_KEY = 'apphub-icon-order';
-    const grid = document.querySelector('.icon-grid');
+    const grids = [...document.querySelectorAll('.icon-grid')];
 
-    // Save order by href
-    function saveOrder() {
-      const order = [...grid.querySelectorAll('.app-icon')].map(el => el.getAttribute('href'));
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    function storageKeyFor(grid) {
+      return STORAGE_KEY + ':' + (grid.dataset.section || 'default');
     }
 
-    // Restore saved order
-    function restoreOrder() {
-      const saved = localStorage.getItem(STORAGE_KEY);
+    // Save order by href, per section
+    function saveOrder(grid) {
+      const order = [...grid.querySelectorAll('.app-icon')].map(el => el.getAttribute('href'));
+      localStorage.setItem(storageKeyFor(grid), JSON.stringify(order));
+    }
+
+    // Restore saved order, per section
+    function restoreOrder(grid) {
+      const saved = localStorage.getItem(storageKeyFor(grid));
       if (!saved) return;
       try {
         const order = JSON.parse(saved);
@@ -393,61 +433,63 @@
       } catch (e) {}
     }
 
-    restoreOrder();
+    grids.forEach(grid => {
+      restoreOrder(grid);
 
-    // Drag state
-    let dragged = null;
+      // Drag state
+      let dragged = null;
 
-    grid.addEventListener('dragstart', e => {
-      dragged = e.target.closest('.app-icon');
-      if (!dragged) return;
-      dragged.classList.add('dragging');
-      e.dataTransfer.effectAllowed = 'move';
-    });
+      grid.addEventListener('dragstart', e => {
+        dragged = e.target.closest('.app-icon');
+        if (!dragged) return;
+        dragged.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
 
-    grid.addEventListener('dragend', e => {
-      if (dragged) dragged.classList.remove('dragging');
-      grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
-      dragged = null;
-      saveOrder();
-    });
+      grid.addEventListener('dragend', e => {
+        if (dragged) dragged.classList.remove('dragging');
+        grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
+        dragged = null;
+        saveOrder(grid);
+      });
 
-    grid.addEventListener('dragover', e => {
-      e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      const target = e.target.closest('.app-icon');
-      if (!target || target === dragged) return;
-      grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
-      target.classList.add('drag-over');
-    });
+      grid.addEventListener('dragover', e => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        const target = e.target.closest('.app-icon');
+        if (!target || target === dragged) return;
+        grid.querySelectorAll('.app-icon').forEach(el => el.classList.remove('drag-over'));
+        target.classList.add('drag-over');
+      });
 
-    grid.addEventListener('dragleave', e => {
-      const target = e.target.closest('.app-icon');
-      if (target) target.classList.remove('drag-over');
-    });
+      grid.addEventListener('dragleave', e => {
+        const target = e.target.closest('.app-icon');
+        if (target) target.classList.remove('drag-over');
+      });
 
-    grid.addEventListener('drop', e => {
-      e.preventDefault();
-      const target = e.target.closest('.app-icon');
-      if (!target || target === dragged || !dragged) return;
-      target.classList.remove('drag-over');
+      grid.addEventListener('drop', e => {
+        e.preventDefault();
+        const target = e.target.closest('.app-icon');
+        if (!target || target === dragged || !dragged) return;
+        target.classList.remove('drag-over');
 
-      // Insert before or after based on mouse position
-      const rect = target.getBoundingClientRect();
-      const midX = rect.left + rect.width / 2;
-      if (e.clientX < midX) {
-        grid.insertBefore(dragged, target);
-      } else {
-        grid.insertBefore(dragged, target.nextSibling);
-      }
-    });
+        // Insert before or after based on mouse position
+        const rect = target.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        if (e.clientX < midX) {
+          grid.insertBefore(dragged, target);
+        } else {
+          grid.insertBefore(dragged, target.nextSibling);
+        }
+      });
 
-    // Make all grid icons draggable
-    grid.querySelectorAll('.app-icon').forEach(el => {
-      el.setAttribute('draggable', 'true');
-      // Prevent link navigation during drag
-      el.addEventListener('click', e => {
-        if (el.classList.contains('dragging')) e.preventDefault();
+      // Make all grid icons draggable
+      grid.querySelectorAll('.app-icon').forEach(el => {
+        el.setAttribute('draggable', 'true');
+        // Prevent link navigation during drag
+        el.addEventListener('click', e => {
+          if (el.classList.contains('dragging')) e.preventDefault();
+        });
       });
     });
   </script>
