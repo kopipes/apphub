@@ -39,6 +39,10 @@
     .menubar span { font-weight: normal; }
     .menubar span:first-of-type { font-weight: bold; }
 
+    .menubar .menu-link { display: inline-flex; align-items: center; min-height: 21px; padding: 0 5px; color: #000; text-decoration: none; font-weight: normal; }
+    .menubar .menu-link:hover { background: #000080; color: #fff; }
+    .menubar .menu-link:focus-visible { outline: 2px solid #000080; outline-offset: 2px; }
+
     /* ── Window ── */
     .window {
       max-width: 860px;
@@ -289,7 +293,7 @@
     <span>File</span>
     <span>Edit</span>
     <span>View</span>
-    <span>Special</span>
+    <a class="menu-link" href="about.html">About app</a>
   </div>
 
   <!-- Finder Window -->
@@ -317,7 +321,7 @@
       <!-- Icon grid: Core App -->
       <div class="icon-grid" data-section="core">
 
-        <a class="app-icon" href="https://flow.provaliantgroup.com/" data-tip="Flow — Alur kerja & approval proses bisnis" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://flow.provaliantgroup.com/" data-tip="Flow — Leads, proyek, tugas & kolaborasi tim" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">account_tree</span></div>
           <span class="icon-label">Flow</span>
         </a>
@@ -327,7 +331,7 @@
           <span class="icon-label">PVBudget</span>
         </a>
 
-        <a class="app-icon" href="https://book.provaliantgroup.com/" data-tip="Book — Pemesanan kendaraan & perjalanan dinas" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://book.provaliantgroup.com/" data-tip="Book — Pemesanan kendaraan & ruang meeting" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">directions_car</span></div>
           <span class="icon-label">Book</span>
         </a>
@@ -337,12 +341,12 @@
           <span class="icon-label">Inventory</span>
         </a>
 
-        <a class="app-icon" href="https://production.provaliant.cloud/" data-tip="Production — Monitoring produksi & work order manufaktur" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://production.provaliant.cloud/" data-tip="Production — Dokumentasi produksi, instalasi & pembongkaran event" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">precision_manufacturing</span></div>
           <span class="icon-label">Production</span>
         </a>
 
-        <a class="app-icon" href="https://provex.provaliantgroup.com/" data-tip="Provex — Pengeluaran, petty cash & reimburse" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://provex.provaliantgroup.com/" data-tip="Provex — Pengajuan & peninjauan klaim biaya proyek" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">paid</span></div>
           <span class="icon-label">Provex</span>
         </a>
@@ -371,7 +375,7 @@
           <span class="icon-label">PVMailer</span>
         </a>
 
-        <a class="app-icon" href="https://absen.provaliantgroup.com/" data-tip="Absen — Presensi kehadiran karyawan" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://absen.provaliantgroup.com/" data-tip="Absen — Impor fingerprint & rekap kehadiran karyawan" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">fingerprint</span></div>
           <span class="icon-label">Absen</span>
         </a>
@@ -381,17 +385,17 @@
           <span class="icon-label">Prompt</span>
         </a>
 
-        <a class="app-icon" href="https://rundb.provaliantgroup.com/" data-tip="RunDB — Query & laporan database" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://rundb.provaliantgroup.com/" data-tip="RunDB — Database peserta & analitik event lari" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">query_stats</span></div>
           <span class="icon-label">RunDB</span>
         </a>
 
-        <a class="app-icon" href="https://dongeng.provaliant.cloud/" data-tip="Dongeng — Bacaan cerita & konten kreatif" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://dongeng.provaliant.cloud/" data-tip="Dongeng — Podcast, video & cerita dari ide dengan AI" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">auto_stories</span></div>
           <span class="icon-label">Dongeng</span>
         </a>
 
-        <a class="app-icon" href="https://ikoot.provaliantgroup.com/" data-tip="iKoot — Kuis & event interaktif karyawan" target="_blank" rel="noopener noreferrer">
+        <a class="app-icon" href="https://ikoot.provaliantgroup.com/" data-tip="iKoot — Platform event, QR scanner & poin peserta" target="_blank" rel="noopener noreferrer">
           <div class="icon-box"><span class="material-symbols-outlined">celebration</span></div>
           <span class="icon-label">iKoot</span>
         </a>

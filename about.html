@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kenali 14 aplikasi di App Hub Provaliant: fungsi, input, output, tujuan, dan siapa penggunanya."/>
+  <title>About app — App Hub Provaliant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-padding-top: 42px; }
+    body { min-height: 100vh; padding-top: 22px; background: #a9a9a9 repeating-linear-gradient(135deg, rgba(255,255,255,.18) 0 1px, transparent 1px 3px); color: #111; font-family: "Geneva", "Charcoal", Arial, sans-serif; }
+    a { color: #000080; }
+    a:focus-visible { outline: 2px solid #000080; outline-offset: 3px; }
+    .skip-link { position: fixed; top: -100px; left: 12px; z-index: 200; padding: 10px; background: #fff; border: 2px solid #000; }
+    .skip-link:focus { top: 28px; }
+    .menubar { position: fixed; top: 0; left: 0; right: 0; height: 22px; background: #eee; border-bottom: 1px solid #555; box-shadow: inset 0 1px #fff, 0 1px #000; display: flex; align-items: center; gap: 18px; padding: 0 10px; z-index: 100; font-size: 12px; user-select: none; }
+    .apple { font-size: 16px; line-height: 1; }
+    .menu-link { display: inline-flex; align-items: center; min-height: 21px; padding: 0 5px; color: #000; text-decoration: none; }
+    .menu-link:hover, .menu-link[aria-current="page"] { color: #fff; background: #000080; }
+    .window { max-width: 1060px; margin: 28px auto 24px; border: 2px solid #000; box-shadow: inset 1px 1px #fff, inset -1px -1px #666, 4px 4px rgba(0,0,0,.35); background: #ddd; }
+    .window-titlebar { height: 20px; background: repeating-linear-gradient(0deg, #000 0px, #000 1px, #eee 1px, #eee 2px, #000 2px, #000 3px, #eee 3px, #eee 5px); border-bottom: 2px solid #000; display: flex; align-items: center; justify-content: center; position: relative; }
+    .title { background: #eee; padding: 1px 10px; font: bold 11px/14px "Geneva", Arial, sans-serif; border: 1px solid #888; }
+    .controls { position: absolute; left: 8px; display: flex; gap: 5px; }
+    .window-btn { width: 12px; height: 12px; border: 1px solid #000; background: #eee; box-shadow: inset 1px 1px #fff, inset -1px -1px #666; }
+    .window-toolbar { min-height: 30px; background: #ccc; border-bottom: 1px solid #999; box-shadow: inset 0 1px #eee; display: flex; align-items: center; gap: 14px; padding: 5px 10px; font-size: 11px; }
+    .back-link { padding: 2px 8px; color: #000; background: #ddd; border: 1px solid #000; box-shadow: inset 1px 1px #fff, inset -1px -1px #888; text-decoration: none; }
+    .back-link:hover { background: #fff; }
+    .intro { padding: 28px 28px 24px; background: #fff; border-bottom: 1px solid #aaa; }
+    h1 { margin-bottom: 10px; font-size: 27px; line-height: 1.2; letter-spacing: -.6px; }
+    .intro p { max-width: 720px; color: #444; font-size: 14px; line-height: 1.7; }
+    .about-layout { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: start; background: #fff; }
+    .directory { position: sticky; top: 42px; max-height: calc(100vh - 60px); overflow-y: auto; padding: 20px 14px; font-size: 12px; }
+    .directory h2 { margin: 0 6px 8px; font-size: 10px; letter-spacing: .7px; text-transform: uppercase; color: #555; }
+    .directory ul { list-style: none; margin-bottom: 22px; }
+    .directory ul:last-child { margin-bottom: 0; }
+    .directory a { display: block; padding: 7px 8px; color: #222; text-decoration: none; border: 1px solid transparent; }
+    .directory a:hover, .directory a:focus-visible { background: #000080; color: #fff; }
+    .descriptions { min-width: 0; border-left: 1px solid #aaa; padding: 20px 26px 28px; }
+    .section-title { padding: 5px 9px; background: #ccc; border: 1px solid #888; box-shadow: inset 1px 1px #fff, inset -1px -1px #666; font-size: 11px; letter-spacing: .4px; text-transform: uppercase; }
+    .section-title span { font-weight: normal; }
+    .app-description { padding: 24px 0; border-bottom: 1px solid #ccc; scroll-margin-top: 42px; }
+    .app-description:last-child { border-bottom: 0; }
+    .app-description:target { box-shadow: inset 3px 0 #000080; padding-left: 15px; }
+    .app-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .app-heading > div { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .app-number { padding: 4px; background: #eee; border: 1px solid #888; font: 11px monospace; }
+    h3 { font-size: 22px; line-height: 1.25; overflow-wrap: anywhere; }
+    .open-app { flex-shrink: 0; font-size: 11px; text-underline-offset: 3px; }
+    .app-description p { margin: 0 0 13px; font-size: 14px; line-height: 1.8; overflow-wrap: break-word; }
+    .app-description p:last-child { margin-bottom: 0; }
+    .app-description strong { font-size: 12px; }
+    .window-statusbar { padding: 7px 10px; background: #ccc; border-top: 1px solid #999; box-shadow: inset 0 1px #eee; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 11px; color: #333; }
+    @media (max-width: 1080px) { .window { margin-left: 12px; margin-right: 12px; } }
+    @media (max-width: 700px) {
+      .window { margin: 22px 6px 12px; }
+      .intro { padding: 22px 18px; }
+      h1 { font-size: 24px; }
+      .about-layout { grid-template-columns: minmax(0, 1fr); }
+      .directory { position: static; max-height: none; border-bottom: 1px solid #aaa; padding: 16px; }
+      .directory ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 16px; gap: 0 8px; }
+      .directory a { padding: 7px; }
+      .descriptions { border-left: 0; padding: 20px 18px; }
+      .app-heading { gap: 8px; }
+      h3 { font-size: 20px; }
+    }
+    @media print {
+      body { padding: 0; background: #fff; }
+      .menubar, .directory, .window-toolbar, .controls, .skip-link { display: none; }
+      .window { margin: 0; max-width: none; border: 0; box-shadow: none; }
+      .about-layout { display: block; }
+      .descriptions { border: 0; }
+      .app-description { break-inside: avoid; box-shadow: none !important; padding-left: 0 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#app-descriptions">Langsung ke deskripsi aplikasi</a>
+  <nav class="menubar" aria-label="Menu utama">
+    <span class="apple" aria-hidden="true">&#63743;</span>
+    <span>File</span><span>Edit</span><span>View</span>
+    <a class="menu-link" href="about.html" aria-current="page">About app</a>
+  </nav>
+  <main class="window" id="top">
+    <div class="window-titlebar">
+      <div class="controls" aria-hidden="true"><span class="window-btn"></span><span class="window-btn"></span><span class="window-btn"></span></div>
+      <span class="title">About app</span>
+    </div>
+    <div class="window-toolbar">
+      <a class="back-link" href="index.html">← App Hub</a>
+      <span>14 aplikasi · 7 Core App · 7 Supporting App</span>
+    </div>
+    <header class="intro">
+      <h1>Kenali aplikasi Provaliant.</h1>
+      <p>Temukan aplikasi yang sesuai dengan pekerjaan Anda. Setiap deskripsi menjelaskan kegunaannya, data yang dimasukkan, hasil yang diperoleh, serta tujuan dan siapa penggunanya.</p>
+    </header>
+    <div class="about-layout">
+      <nav class="directory" aria-label="Daftar aplikasi">
+        <h2>Core App</h2>
+<ul><li><a href="#flow">Flow</a></li><li><a href="#pvbudget">PVBudget</a></li><li><a href="#book">Book</a></li><li><a href="#inventory">Inventory</a></li><li><a href="#production">Production</a></li><li><a href="#provex">Provex</a></li><li><a href="#pcx">PCX</a></li></ul>
+        <h2>Supporting App</h2>
+<ul><li><a href="#links">Links</a></li><li><a href="#pvmailer">PVMailer</a></li><li><a href="#absen">Absen</a></li><li><a href="#prompt">Prompt</a></li><li><a href="#rundb">RunDB</a></li><li><a href="#dongeng">Dongeng</a></li><li><a href="#ikoot">iKoot</a></li></ul>
+      </nav>
+      <div class="descriptions" id="app-descriptions" tabindex="-1">
+      <section aria-labelledby="core-apps">
+        <h2 class="section-title" id="core-apps">Core App <span>· 7 aplikasi</span></h2>
+        <article class="app-description" id="flow" aria-labelledby="flow-title">
+          <header class="app-heading">
+            <div><span class="app-number">01</span><h3 id="flow-title">Flow</h3></div>
+            <a class="open-app" href="https://flow.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Flow di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Flow adalah ruang kerja bersama untuk mengelola calon proyek atau lead, proyek yang sudah berjalan, tugas, kontak, dan catatan rapat. Informasi penjualan dan pelaksanaan pekerjaan disusun dalam satu alur, sehingga tim dapat mengikuti perkembangan pekerjaan dari peluang awal sampai proyek selesai.</p>
+          <p><strong>Input.</strong> Input yang dicatat meliputi nama lead atau proyek, perusahaan dan brand klien, divisi, perkiraan nilai, tahapan pekerjaan, tanggal event, serta anggota tim. Di dalam proyek, pengguna menambahkan tugas dengan PIC dan deadline, pembaruan progres, lampiran, dan notulen rapat beserta tindak lanjutnya.</p>
+          <p><strong>Output.</strong> Outputnya berupa daftar lead dan proyek, timeline aktivitas, daftar tugas tiap PIC, pengingat, serta dashboard dan laporan perkembangan pekerjaan. Lead yang sudah mencapai tahap yang ditentukan dapat diubah menjadi proyek, sehingga informasi yang telah terkumpul tetap dapat dipakai pada tahap pelaksanaan.</p>
+          <p><strong>Tujuan & pengguna.</strong> Flow dibuat untuk membantu koordinasi pekerjaan yang informasinya mudah tersebar di percakapan, file, atau catatan pribadi. Aplikasi ini ditujukan bagi tim sales, project manager, anggota tim pelaksana, dan pimpinan divisi yang perlu mengetahui siapa mengerjakan apa, progres terakhir, dan pekerjaan yang membutuhkan perhatian.</p>
+        </article>
+        <article class="app-description" id="pvbudget" aria-labelledby="pvbudget-title">
+          <header class="app-heading">
+            <div><span class="app-number">02</span><h3 id="pvbudget-title">PVBudget</h3></div>
+            <a class="open-app" href="https://budget.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka PVBudget di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> PVBudget adalah aplikasi penyusunan anggaran event dan pencatatan realisasinya. Rincian biaya dan nilai penawaran ditempatkan dalam formulir proyek yang dapat ditinjau serta diajukan untuk persetujuan, sehingga tim mempunyai acuan anggaran yang jelas sebelum pekerjaan dilaksanakan.</p>
+          <p><strong>Input.</strong> Inputnya meliputi nomor proyek, nama dan lokasi event, tautan proyek, serta rincian item pekerjaan. Setiap item dapat memuat jumlah, durasi, nilai internal, nilai anggaran, dan nilai aktual; formulir juga menyediakan komponen perhitungan seperti diskon dan management fee.</p>
+          <p><strong>Output.</strong> Outputnya adalah rincian budget, perhitungan total, catatan realisasi, status pengajuan, serta riwayat approval. Formulir dapat diekspor ke XLS untuk kebutuhan peninjauan atau pembahasan. Setelah anggaran disetujui dan realisasi diaktifkan, pencatatan aktual membantu tim membandingkan rencana dengan pelaksanaan.</p>
+          <p><strong>Tujuan & pengguna.</strong> PVBudget dibuat untuk menyatukan perhitungan biaya dan proses persetujuan agar tim tidak bergantung pada salinan spreadsheet yang berbeda-beda. Penggunanya adalah penyusun anggaran event, penanggung jawab proyek, pengelola keuangan, dan pihak corporate atau admin yang meninjau serta menyetujui anggaran.</p>
+        </article>
+        <article class="app-description" id="book" aria-labelledby="book-title">
+          <header class="app-heading">
+            <div><span class="app-number">03</span><h3 id="book-title">Book</h3></div>
+            <a class="open-app" href="https://book.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Book di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Book adalah aplikasi pemesanan fasilitas kerja bersama, mencakup kendaraan operasional dan ruang meeting. Kalender dan daftar pemesanan membantu karyawan melihat jadwal penggunaan fasilitas sebelum membuat reservasi untuk perjalanan kerja atau kegiatan rapat.</p>
+          <p><strong>Input.</strong> Input yang dibutuhkan adalah judul dan keterangan kegiatan, kendaraan atau ruang yang dipilih, serta waktu mulai dan selesai. Admin mengelola data kendaraan, kapasitas dan statusnya, ruang meeting, divisi, serta pengemudi dan penugasannya pada kendaraan.</p>
+          <p><strong>Output.</strong> Outputnya berupa informasi ketersediaan, jadwal pemakaian dalam kalender, detail reservasi, dan daftar pemesanan pengguna. Untuk kendaraan, data penugasan pengemudi membantu menunjukkan siapa yang bertugas pada tanggal tertentu, sehingga kebutuhan perjalanan dapat dikoordinasikan dengan jadwal kendaraan.</p>
+          <p><strong>Tujuan & pengguna.</strong> Book dibuat agar pemakaian fasilitas bersama lebih mudah direncanakan dan jadwalnya tidak hanya tersimpan dalam percakapan antarorang. Aplikasi ini ditujukan bagi karyawan yang membutuhkan kendaraan atau ruang rapat, serta admin operasional yang mengatur fasilitas, kendaraan, dan pengemudi.</p>
+        </article>
+        <article class="app-description" id="inventory" aria-labelledby="inventory-title">
+          <header class="app-heading">
+            <div><span class="app-number">04</span><h3 id="inventory-title">Inventory</h3></div>
+            <a class="open-app" href="https://pventory.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Inventory di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Inventory, atau PVentory, adalah aplikasi pengelolaan barang dan gudang yang mendukung kebutuhan event serta pekerjaan lapangan. Data inventori, lokasi gudang, permintaan barang, dan pekerjaan workshop tersedia dalam satu tempat agar tim dapat mengikuti kebutuhan serta kondisi perlengkapan.</p>
+          <p><strong>Input.</strong> Inputnya meliputi master barang dan kategori, foto serta informasi barang, lokasi gudang, data event, dan rincian permintaan perlengkapan. Tim juga dapat mencatat informasi pekerjaan workshop yang berkaitan dengan barang, sesuai tugas dan hak akses masing-masing pengguna.</p>
+          <p><strong>Output.</strong> Outputnya adalah daftar inventori yang dapat ditelusuri, informasi barang per gudang, daftar permintaan dan statusnya, serta ringkasan pada dashboard. Data event dan workshop memberi konteks penggunaan serta penanganan perlengkapan, sehingga pengecekan tidak berhenti pada daftar nama barang saja.</p>
+          <p><strong>Tujuan & pengguna.</strong> Inventory dibuat untuk membantu tim mengetahui barang yang tersedia, lokasi penyimpanannya, dan kebutuhan perlengkapan yang sedang ditangani. Penggunanya adalah staf gudang, tim lapangan, pengelola event, penanggung jawab workshop, serta manager dan corporate yang memantau kegiatan operasional.</p>
+        </article>
+        <article class="app-description" id="production" aria-labelledby="production-title">
+          <header class="app-heading">
+            <div><span class="app-number">05</span><h3 id="production-title">Production</h3></div>
+            <a class="open-app" href="https://production.provaliant.cloud/" target="_blank" rel="noopener noreferrer" aria-label="Buka Production di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Production, dengan nama PVPROD, adalah aplikasi dokumentasi dan pemantauan pelaksanaan produksi untuk proyek event. Pekerjaan diatur menurut tahap pre-loading, loading in, dan loading out, sehingga persiapan, pemasangan, hingga pembongkaran mempunyai urutan dokumentasi yang jelas.</p>
+          <p><strong>Input.</strong> Inputnya meliputi nama proyek, klien, vendor, lokasi, divisi, jadwal, dan anggota proyek. Tim mengunggah foto survei, desain, gambar kerja, dan progres workshop; saat pelaksanaan, tim menambahkan checklist, foto marking, progres instalasi, serta dokumentasi pembongkaran dan verifikasi akhir.</p>
+          <p><strong>Output.</strong> Outputnya berupa riwayat dokumentasi per proyek dan tahap, kumpulan foto dengan judul atau catatan, checklist pekerjaan, dan status proyek. Pengelompokan ini membantu penanggung jawab meninjau apa yang sudah disiapkan, dipasang, diperiksa, atau diselesaikan di lapangan.</p>
+          <p><strong>Tujuan & pengguna.</strong> Production dibuat untuk merapikan bukti pelaksanaan yang mudah tercecer di chat atau folder foto terpisah. Aplikasi ini ditujukan bagi tim produksi, workshop, kru lapangan, project manager, dan kepala divisi yang perlu memantau kesiapan serta penyelesaian pekerjaan event.</p>
+        </article>
+        <article class="app-description" id="provex" aria-labelledby="provex-title">
+          <header class="app-heading">
+            <div><span class="app-number">06</span><h3 id="provex-title">Provex</h3></div>
+            <a class="open-app" href="https://provex.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Provex di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Provex adalah aplikasi pengelolaan klaim penggantian biaya yang dikaitkan dengan proyek. Setiap klaim memiliki konteks proyek dan alur pemeriksaan, sehingga pengeluaran yang diajukan karyawan dapat ditelusuri bersama bukti serta keputusan peninjauannya.</p>
+          <p><strong>Input.</strong> Inputnya adalah proyek yang diikuti pengguna, rincian pengeluaran, nilai klaim, dan lampiran bukti seperti foto struk atau dokumen. Pengelola menyiapkan data proyek serta keanggotaan, sedangkan peninjau memasukkan keputusan persetujuan, penolakan, atau permintaan revisi.</p>
+          <p><strong>Output.</strong> Outputnya berupa daftar dan riwayat klaim, status draft hingga hasil peninjauan, ringkasan pengeluaran per proyek, serta laporan yang dapat diekspor. Riwayat pemeriksaan membantu pengguna mengetahui klaim yang perlu diperbaiki dan membantu pengelola menelusuri pengajuan yang sudah diproses.</p>
+          <p><strong>Tujuan & pengguna.</strong> Provex dibuat untuk menggantikan pengajuan biaya yang tersebar dalam pesan dan kumpulan struk tanpa konteks proyek yang konsisten. Aplikasi ini ditujukan bagi karyawan pengaju klaim, manager peninjau, dan admin atau pengelola keuangan yang memerlukan pencatatan biaya proyek yang lebih rapi.</p>
+        </article>
+        <article class="app-description" id="pcx" aria-labelledby="pcx-title">
+          <header class="app-heading">
+            <div><span class="app-number">07</span><h3 id="pcx-title">PCX</h3></div>
+            <a class="open-app" href="https://pcx.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka PCX di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> PCX adalah aplikasi survei pengalaman dan kepuasan pelanggan terhadap pelaksanaan proyek. Penilaian pelanggan dihubungkan dengan proyek, business unit, dan project manager, agar masukan yang diterima dapat dibaca dalam konteks layanan yang benar.</p>
+          <p><strong>Input.</strong> Inputnya meliputi data proyek dan klien, template pertanyaan, daftar penerima, serta pengaturan survei. Pelanggan mengisi rating, NPS, pilihan jawaban, dan komentar melalui tautan survei. Tim internal dapat menambahkan penanggung jawab serta catatan tindak lanjut atas respons yang membutuhkan perhatian.</p>
+          <p><strong>Output.</strong> Outputnya adalah respons pelanggan, ringkasan dan analitik survei, status pengiriman atau pengisian, serta daftar tindak lanjut sampai terselesaikan. Dashboard untuk berbagai peran membantu tim melihat kualitas pengalaman pelanggan dan mengarahkan pembahasan ke proyek atau unit yang relevan.</p>
+          <p><strong>Tujuan & pengguna.</strong> PCX dibuat agar umpan balik pelanggan menjadi bahan perbaikan yang tercatat dan dapat ditindaklanjuti. Penggunanya adalah pelanggan sebagai responden, tim customer service, project manager, kepala business unit, direktur, dan admin yang mengelola serta memantau survei.</p>
+        </article>
+      </section>
+      <section aria-labelledby="supporting-apps">
+        <h2 class="section-title" id="supporting-apps">Supporting App <span>· 7 aplikasi</span></h2>
+        <article class="app-description" id="links" aria-labelledby="links-title">
+          <header class="app-heading">
+            <div><span class="app-number">08</span><h3 id="links-title">Links</h3></div>
+            <a class="open-app" href="https://links.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Links di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Links adalah pusat referensi digital untuk mengumpulkan tautan kerja dan informasi pendukung tim. Satu entri dapat berisi beberapa tautan ke dokumen, spreadsheet, desain, atau sumber lain, dengan kategori dan tag agar referensi mudah ditemukan kembali.</p>
+          <p><strong>Input.</strong> Inputnya mencakup judul, deskripsi, kategori, tag, URL, label tautan, dan pengaturan visibilitas. Pengguna juga dapat menyimpan bookmark, catatan, serta tanggal atau pengingat yang relevan dengan aktivitas kerja, sehingga informasi pendukung tidak harus disimpan di banyak tempat.</p>
+          <p><strong>Output.</strong> Outputnya berupa kumpulan referensi yang dapat dicari dan disaring, daftar favorit atau arsip, bookmark, catatan, serta pengingat tanggal. Penataan tautan dalam satu entri membantu pengguna membuka sumber yang saling berkaitan tanpa perlu menelusuri ulang percakapan atau banyak folder.</p>
+          <p><strong>Tujuan & pengguna.</strong> Links dibuat untuk memudahkan pencarian kembali referensi dan mengurangi ketergantungan pada ingatan pribadi tentang lokasi sebuah file. Aplikasi ini ditujukan bagi karyawan dan tim lintas fungsi yang sering berbagi dokumen kerja, bahan desain, panduan, atau informasi proyek sesuai hak aksesnya.</p>
+        </article>
+        <article class="app-description" id="pvmailer" aria-labelledby="pvmailer-title">
+          <header class="app-heading">
+            <div><span class="app-number">09</span><h3 id="pvmailer-title">PVMailer</h3></div>
+            <a class="open-app" href="https://pvmailer.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka PVMailer di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> PVMailer adalah aplikasi pengiriman email campaign ke daftar kontak yang dikelola tim. Pengguna dapat menyiapkan template, memilih penerima, dan memantau hasil pengiriman dalam satu alur, termasuk menggunakan variabel untuk menyesuaikan isi email bagi penerima.</p>
+          <p><strong>Input.</strong> Inputnya adalah daftar kontak dari file Excel, pemetaan kolom, pengelompokan kontak, template email, dan nilai variabel personalisasi. Saat membuat campaign, pengguna menentukan template, memilih kontak sasaran, melengkapi informasi pesan, lalu meninjau rencana pengirimannya.</p>
+          <p><strong>Output.</strong> Outputnya mencakup campaign dan antrean pengiriman, status per penerima, serta statistik seperti delivered, opened, bounced, dan complained ketika event pelacakan tersedia. Campaign dapat dijeda, dilanjutkan, atau dicoba ulang untuk penerima yang gagal; kontak dengan hard bounce atau komplain dapat dikecualikan otomatis.</p>
+          <p><strong>Tujuan & pengguna.</strong> PVMailer dibuat untuk membantu pengiriman email berulang yang perlu dikelola dan dilacak tanpa proses manual satu per satu. Aplikasi ini ditujukan bagi tim komunikasi, marketing, sales, atau admin internal yang memiliki daftar penerima dan memerlukan catatan hasil pengiriman yang jelas.</p>
+        </article>
+        <article class="app-description" id="absen" aria-labelledby="absen-title">
+          <header class="app-heading">
+            <div><span class="app-number">10</span><h3 id="absen-title">Absen</h3></div>
+            <a class="open-app" href="https://absen.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Absen di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Absen adalah aplikasi pengolahan data kehadiran dari file mesin fingerprint menjadi rekap bulanan karyawan. Aplikasi memetakan nama pada mesin ke data karyawan, lalu mengolah catatan scan berdasarkan aturan jam kerja dan hari libur yang digunakan perusahaan.</p>
+          <p><strong>Input.</strong> Inputnya meliputi daftar karyawan beserta nickname absensi, file bulanan XLS atau XLSX dari mesin, pengaturan jam kerja, dan kalender hari libur. Admin dapat melengkapi catatan harian seperti sakit, izin, WFH, off, atau cuti tahunan, serta menyelesaikan pemetaan nama yang belum dikenali.</p>
+          <p><strong>Output.</strong> Outputnya berupa tabel kehadiran per karyawan dan tanggal, perhitungan keterlambatan, daftar scan tidak lengkap atau hari tanpa absen, serta rekap bulanan dan tahunan. Hasil pengolahan dapat diekspor ke XLSX untuk pemeriksaan dan kebutuhan administrasi kehadiran.</p>
+          <p><strong>Tujuan & pengguna.</strong> Absen dibuat untuk mengurangi pengolahan spreadsheet berulang dan menjaga konsistensi perhitungan kehadiran. Aplikasi ini ditujukan bagi HR, admin absensi, dan pihak yang memeriksa rekap karyawan; admin mengelola impor serta koreksi, sementara pengguna lain dapat melihat laporan sesuai kewenangannya.</p>
+        </article>
+        <article class="app-description" id="prompt" aria-labelledby="prompt-title">
+          <header class="app-heading">
+            <div><span class="app-number">11</span><h3 id="prompt-title">Prompt</h3></div>
+            <a class="open-app" href="https://prompt.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka Prompt di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Prompt adalah perpustakaan prompt AI dan referensi hasil kreatif yang dapat dipakai kembali oleh tim. Koleksi prompt dapat dilengkapi konteks tool, model, kategori, tag, dan gambar pembanding agar instruksi yang disimpan lebih mudah dipahami serta diadaptasi.</p>
+          <p><strong>Input.</strong> Inputnya mencakup judul, nama tool AI, teks prompt, negative prompt bila diperlukan, versi model, dan rasio gambar. Pengguna dapat menambahkan gambar sebelum dan sesudah, lalu mengelompokkan materi dalam kategori, tag, atau proyek yang berisi rangkaian gambar dan prompt.</p>
+          <p><strong>Output.</strong> Outputnya adalah koleksi prompt yang dapat dicari dan dibuka kembali, detail pengaturan yang menyertainya, serta dokumentasi visual per proyek. Materi tersebut menjadi referensi saat tim ingin mengulang pendekatan kreatif atau mempelajari hubungan antara instruksi dan hasil yang disimpan.</p>
+          <p><strong>Tujuan & pengguna.</strong> Prompt dibuat agar eksperimen AI tidak berhenti sebagai teks yang tercecer di chat atau catatan pribadi. Aplikasi ini ditujukan bagi tim kreatif, desainer, pembuat konten, dan rekan kerja yang menggunakan AI. Fungsinya adalah menyimpan dan berbagi referensi; proses pembuatan hasil tetap dilakukan pada tool AI yang digunakan.</p>
+        </article>
+        <article class="app-description" id="rundb" aria-labelledby="rundb-title">
+          <header class="app-heading">
+            <div><span class="app-number">12</span><h3 id="rundb-title">RunDB</h3></div>
+            <a class="open-app" href="https://rundb.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka RunDB di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> RunDB adalah aplikasi pengelolaan database peserta dan analitik event lari. Data dari beberapa event dikumpulkan agar tim dapat menelusuri peserta, membaca karakteristik audiens, dan mengenali pelari yang mengikuti lebih dari satu event.</p>
+          <p><strong>Input.</strong> Input utamanya adalah file CSV data peserta yang diunggah admin, termasuk informasi event dan atribut peserta. Data dapat mencakup nama, email, usia, gender, domisili, golongan darah, dan metode pembelian. Impor mencatat hasil pemrosesan serta melewati duplikasi berdasarkan kombinasi email dan event.</p>
+          <p><strong>Output.</strong> Outputnya berupa daftar peserta dengan pencarian dan filter, ekspor Excel, riwayat upload, serta dashboard analitik. Ringkasan menampilkan jumlah peserta, pelari unik dan berulang, distribusi usia atau wilayah, serta perbandingan antar-event untuk membantu pembacaan profil audiens.</p>
+          <p><strong>Tujuan & pengguna.</strong> RunDB dibuat untuk menyatukan data peserta yang sebelumnya terpisah per file atau event menjadi bahan analisis yang lebih mudah ditelusuri. Aplikasi ini ditujukan bagi admin data, penyelenggara event lari, serta tim analitik dan marketing yang memerlukan pemahaman tentang peserta sesuai akses yang diberikan.</p>
+        </article>
+        <article class="app-description" id="dongeng" aria-labelledby="dongeng-title">
+          <header class="app-heading">
+            <div><span class="app-number">13</span><h3 id="dongeng-title">Dongeng</h3></div>
+            <a class="open-app" href="https://dongeng.provaliant.cloud/" target="_blank" rel="noopener noreferrer" aria-label="Buka Dongeng di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> Dongeng, dengan nama Yuk Dongeng, adalah platform cerita digital untuk anak yang menyediakan jalur menikmati podcast, video, dan membuat dongeng dari ide sendiri melalui fitur AI Dongeng. Pengalaman utamanya berpusat pada kegiatan mendengar, menonton, dan mengembangkan imajinasi melalui cerita.</p>
+          <p><strong>Input.</strong> Input dari pengguna berupa pilihan cerita atau konten yang ingin dinikmati. Pada AI Dongeng, pengguna memasukkan ide cerita dalam bentuk teks, misalnya tokoh utama, latar tempat, tantangan yang dihadapi, atau pesan moral yang ingin disampaikan; halaman tersebut juga menyediakan contoh ide untuk membantu memulai.</p>
+          <p><strong>Output.</strong> Output yang ditawarkan adalah akses ke konten podcast dan video dongeng, serta cerita yang dibuat dari masukan pengguna melalui alur AI Dongeng. Pengguna dapat memilih pengalaman bercerita yang sesuai dengan kebutuhannya, dari mendengarkan cerita yang tersedia sampai menyusun ide dongeng personal.</p>
+          <p><strong>Tujuan & pengguna.</strong> Dongeng dibuat untuk memberi keluarga pilihan kegiatan bercerita yang mudah diakses sekaligus membuka ruang kreativitas anak. Aplikasi ini ditujukan bagi anak-anak bersama orang tua atau pendamping, serta pendidik yang ingin menggunakan cerita sebagai bahan kegiatan mendengar, berdiskusi, dan berimajinasi.</p>
+        </article>
+        <article class="app-description" id="ikoot" aria-labelledby="ikoot-title">
+          <header class="app-heading">
+            <div><span class="app-number">14</span><h3 id="ikoot-title">iKoot</h3></div>
+            <a class="open-app" href="https://ikoot.provaliantgroup.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka iKoot di tab baru">Buka app <span aria-hidden="true">↗</span></a>
+          </header>
+          <p><strong>Tentang aplikasi.</strong> iKoot adalah platform event yang menampilkan acara unggulan, acara yang sedang berlangsung, dan agenda mendatang. Pengalaman peserta dilengkapi area akun, daftar event pribadi, QR scanner, serta menu poin dan penukaran, sehingga aktivitas peserta terhubung dengan informasi acara.</p>
+          <p><strong>Input.</strong> Inputnya meliputi pilihan event, informasi profil akun, dan pemindaian kode QR pada alur yang tersedia. Halaman event menyajikan nama acara, deskripsi, waktu, dan lokasi sebagai dasar peserta memilih kegiatan; pengguna yang memiliki akses akun dapat mengikuti alur terkait event dan poinnya.</p>
+          <p><strong>Output.</strong> Outputnya berupa katalog dan detail event, akses ke daftar My Events, serta tampilan My Points dan riwayat penukaran. Alur QR menyediakan pemindaian kode dan klaim promo, sementara menu redeem mengelompokkan pilihan seperti merchandise, makanan dan minuman, pengalaman, atau diskon.</p>
+          <p><strong>Tujuan & pengguna.</strong> iKoot dibuat untuk menyatukan penemuan acara dan keterlibatan peserta dalam satu pengalaman digital. Aplikasi ini ditujukan bagi pengunjung atau peserta event dan tim penyelenggara yang membutuhkan kanal informasi serta interaksi peserta, terutama saat kegiatan menggunakan QR, promo, atau program poin.</p>
+        </article>
+      </section>
+      </div>
+    </div>
+    <footer class="window-statusbar"><span>© 2026 Provaliant Group · Butuh akses? Hubungi admin IT.</span><a href="#top">Kembali ke atas ↑</a></footer>
+  </main>
+</body>
+</html>
