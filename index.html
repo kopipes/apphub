@@ -122,10 +122,11 @@
 
     /* ── Icon grid ── */
     .icon-grid {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
       gap: 8px;
       padding: 4px;
+      justify-items: center;
     }
 
     .section-title {
@@ -143,7 +144,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 88px;
+      width: 100%;
+      max-width: 112px;
       padding: 8px 4px 6px;
       text-decoration: none;
       color: #000;
@@ -279,7 +281,7 @@
 
     @media (max-width: 540px) {
       .window { margin: 26px 6px 10px; }
-      .app-icon { width: 76px; }
+      .app-icon { max-width: 96px; }
       .app-icon.featured { flex-direction: column; text-align: center; }
       .app-icon.featured .icon-label { text-align: center; }
     }
@@ -421,7 +423,48 @@
 
   <script>
     const STORAGE_KEY = 'apphub-icon-order';
+    const MAX_COLS = 6;
+    const MIN_CELL = 104;
     const grids = [...document.querySelectorAll('.icon-grid')];
+
+    // Pick the column count that keeps rows even:
+    // 6 apps -> 1 row of 6, 8 apps -> 2 rows of 4, 9 apps -> 5 + 4, and so on.
+    function layoutGrid(grid) {
+      const count = grid.querySelectorAll('.app-icon').length;
+      if (!count) return;
+
+      const available = grid.clientWidth - 8;
+      const fit = Math.floor(available / MIN_CELL);
+      const maxCols = Math.max(1, Math.min(MAX_COLS, count, fit || 1));
+
+      let bestCols = 1;
+      let bestScore = null;
+      for (let cols = 1; cols <= maxCols; cols++) {
+        const rows = Math.ceil(count / cols);
+        const empty = rows * cols - count;
+        const score = [rows, empty, -cols];
+        if (!bestScore ||
+            score[0] < bestScore[0] ||
+            (score[0] === bestScore[0] &&
+              (score[1] < bestScore[1] ||
+                (score[1] === bestScore[1] && score[2] < bestScore[2])))) {
+          bestScore = score;
+          bestCols = cols;
+        }
+      }
+
+      grid.style.setProperty('--cols', bestCols);
+    }
+
+    function layoutAll() {
+      grids.forEach(layoutGrid);
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutAll, 120);
+    });
 
     function storageKeyFor(grid) {
       return STORAGE_KEY + ':' + (grid.dataset.section || 'default');
@@ -506,6 +549,8 @@
         });
       });
     });
+
+    layoutAll();
   </script>
 </body>
 </html>
